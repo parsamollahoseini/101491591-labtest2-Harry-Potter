@@ -1,0 +1,75 @@
+<div class="container">
+  <button mat-raised-button color="primary" (click)="goBack()" class="back-button">
+    ← Back to Characters
+  </button>
+
+  <div *ngIf="isLoading" class="loading-container">
+    <mat-spinner></mat-spinner>
+    <p>Loading character details...</p>
+  </div>
+
+  <div *ngIf="!isLoading && !character" class="no-data">
+    <p>Character not found.</p>
+  </div>
+
+  <mat-card *ngIf="!isLoading && character" class="details-card">
+    <div class="card-content">
+      <div class="image-section">
+        <img
+          [src]="character.image || getDefaultImage()"
+          [alt]="character.name"
+          class="character-image">
+      </div>
+
+      <div class="info-section">
+        <mat-card-header>
+          <mat-card-title class="character-name">{{ character.name }}</mat-card-title>
+          <mat-card-subtitle *ngIf="character.house" class="house">{{ character.house }}</mat-card-subtitle>
+          <mat-card-subtitle *ngIf="!character.house" class="no-house">No House</mat-card-subtitle>
+        </mat-card-header>
+
+        <mat-card-content>
+          <mat-list>
+            <h3 mat-subheader>Basic Information</h3>
+
+            <mat-list-item>
+              <span mat-line><strong>Species:</strong> {{ character.species || 'Unknown' }}</span>
+            </mat-list-item>
+            <mat-divider></mat-divider>
+
+            <mat-list-item>
+              <span mat-line><strong>Wizard:</strong> {{ character.wizard ? 'Yes' : 'No' }}</span>
+            </mat-list-item>
+            <mat-divider></mat-divider>
+
+            <mat-list-item>
+              <span mat-line><strong>Ancestry:</strong> {{ character.ancestry || 'Unknown' }}</span>
+            </mat-list-item>
+            <mat-divider></mat-divider>
+
+            <mat-list-item>
+              <span mat-line><strong>Actor:</strong> {{ character.actor || 'Unknown' }}</span>
+            </mat-list-item>
+            <mat-divider></mat-divider>
+
+            <h3 mat-subheader>Wand Details</h3>
+
+            <mat-list-item>
+              <span mat-line><strong>Wood:</strong> {{ character.wand?.wood || 'Unknown' }}</span>
+            </mat-list-item>
+            <mat-divider></mat-divider>
+
+            <mat-list-item>
+              <span mat-line><strong>Core:</strong> {{ character.wand?.core || 'Unknown' }}</span>
+            </mat-list-item>
+            <mat-divider></mat-divider>
+
+            <mat-list-item>
+              <span mat-line><strong>Length:</strong> {{ character.wand?.length ? character.wand.length + ' inches' : 'Unknown' }}</span>
+            </mat-list-item>
+          </mat-list>
+        </mat-card-content>
+      </div>
+    </div>
+  </mat-card>
+</div>

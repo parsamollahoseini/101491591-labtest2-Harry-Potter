@@ -1,0 +1,36 @@
+<div class="container">
+  <h1 class="title">Harry Potter Characters</h1>
+
+  <app-characterfilter (houseSelected)="onHouseSelected($event)"></app-characterfilter>
+
+  <div *ngIf="isLoading" class="loading-container">
+    <mat-spinner></mat-spinner>
+    <p>Loading characters...</p>
+  </div>
+
+  <div *ngIf="!isLoading" class="characters-grid">
+    <mat-card *ngFor="let character of characters" class="character-card">
+      <img
+        mat-card-image
+        [src]="character.image || getDefaultImage()"
+        [alt]="character.name"
+        class="character-image">
+
+      <mat-card-header>
+        <mat-card-title>{{ character.name }}</mat-card-title>
+        <mat-card-subtitle *ngIf="character.house">{{ character.house }}</mat-card-subtitle>
+        <mat-card-subtitle *ngIf="!character.house" class="no-house">No House</mat-card-subtitle>
+      </mat-card-header>
+
+      <mat-card-actions>
+        <button mat-raised-button color="primary" (click)="viewCharacterDetails(character)">
+          View Details
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+
+  <div *ngIf="!isLoading && characters.length === 0" class="no-results">
+    <p>No characters found.</p>
+  </div>
+</div>

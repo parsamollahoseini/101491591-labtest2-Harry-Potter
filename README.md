@@ -4,6 +4,8 @@
 **Course:** COMP 3133
 **Project Name:** 101491591-lab-test2-comp3133
 
+https://cheery-praline-7fc8d0.netlify.app/
+
 ## 📖 Project Description
 
 An Angular application that displays Harry Potter characters using the Harry Potter API. The app allows users to browse all characters, filter by Hogwarts house, and view detailed information about individual characters.
